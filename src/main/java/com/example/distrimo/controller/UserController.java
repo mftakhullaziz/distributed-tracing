@@ -3,6 +3,7 @@ package com.example.distrimo.controller;
 import com.example.distrimo.core.UserService;
 import com.example.distrimo.data.UserData;
 import com.example.distrimo.data.UserRequest;
+import io.micrometer.observation.annotation.Observed;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.UUID;
 
+@Observed
 @RestController
 @RequestMapping("api/user")
 @Tag(name = "User Rest API")

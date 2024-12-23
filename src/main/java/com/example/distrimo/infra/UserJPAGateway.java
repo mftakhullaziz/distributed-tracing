@@ -1,13 +1,14 @@
 package com.example.distrimo.infra;
 
 import com.example.distrimo.annotation.Gateway;
-import lombok.RequiredArgsConstructor;
+import io.micrometer.observation.annotation.Observed;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@Observed
 @Gateway
 @Component
 public class UserJPAGateway {
@@ -35,11 +36,11 @@ public class UserJPAGateway {
     }
 
     public void deleteById(UUID id) {
-//        userJPARepository.findById(id)
-//            .ifPresent(user -> {
-//                user.setActive(false);
-//                saveOrUpdate(user);
-//            });
+        userJPARepository.findById(id)
+            .ifPresent(user -> {
+                user.setActive(false);
+                saveOrUpdate(user);
+            });
     }
 
     public boolean userExists(UUID id) {

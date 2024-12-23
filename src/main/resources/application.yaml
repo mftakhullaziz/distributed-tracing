@@ -31,6 +31,9 @@ spring:
 logging:
   pattern:
     level: '%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]'
+  level:
+    io.micrometer.tracing: DEBUG
+    zipkin2: DEBUG
 
 management:
   tracing:
@@ -42,7 +45,7 @@ management:
         include: health,info,prometheus,metrics
   metrics:
     tags:
-      application: observability-demo
+      application: distrimo-backend-service
     distribution:
       percentiles-histogram:
         http:
@@ -50,4 +53,4 @@ management:
             requests: true
   zipkin:
     tracing:
-      endpoint: http://${TEMPO_HOST:localhost}:${TEMPO_PORT:9411}/api/v2/spans
+      endpoint: http://tempo:9411/api/v2/spans

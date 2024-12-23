@@ -5,12 +5,14 @@ import com.example.distrimo.data.UserData;
 import com.example.distrimo.data.UserRequest;
 import com.example.distrimo.infra.UserJPAGateway;
 import com.example.distrimo.infra.UserTRecord;
+import io.micrometer.observation.annotation.Observed;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
+@Observed
 @Core
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {

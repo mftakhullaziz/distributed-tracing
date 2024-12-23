@@ -1,9 +1,12 @@
+stream_over_http_enabled: true
 server:
   http_listen_port: 3200
+  log_level: info
 
 distributor:
   receivers:
     zipkin:
+      endpoint: "tempo:9411"
 
 storage:
   trace:

@@ -1,35 +1,28 @@
 services:
-  demo:
-    image: observability-demo
+  distrimo-backend-service:
+    image: distrimo-backend-service
     build:
       context: .
       dockerfile: Dockerfile
     environment:
-      DB_HOST: "db"
       LOKI_HOST: "loki"
-      TEMPO_HOST: "tempo"
+      TEMPO_HOST: http://tempo:9411
     ports:
-      - "8080:8080"
-
-  db:
-    image: postgres
-    restart: always
-    environment:
-      POSTGRES_PASSWORD: root
-    ports:
-      - "5432:5432"
+      - "8001:8001"
 
   tempo:
+    container_name: distrimo-tempo
     image: grafana/tempo
     command: [ "-config.file=/etc/tempo.yaml" ]
     volumes:
-      - ./docker/tempo/tempo-local.yml:/etc/tempo.yaml:ro
+      - ./docker/tempo/tempo.yaml:/etc/tempo.yaml:ro
       - ./docker/tempo/tempo-data:/tmp/tempo
     ports:
-      - "14268"  # jaeger ingest
+      - "14268:14268"  # jaeger ingest
       - "9411:9411" # zipkin
 
   loki:
+    container_name: distrimo-loki
     image: grafana/loki
     command: [ "-config.file=/etc/loki/local-config.yaml" ]
     ports:
@@ -41,20 +34,22 @@ services:
       - JAEGER_SAMPLER_PARAM=1
 
   prometheus:
+    container_name: distrimo-prometheus
     image: prom/prometheus
     extra_hosts: [ 'host.docker.internal:host-gateway' ]
     command:
       - --enable-feature=exemplar-storage
       - --config.file=/etc/prometheus/prometheus.yml
     volumes:
-      - ./docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./docker/prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml:ro
     ports:
       - "9090:9090"
 
   grafana:
+    container_name: distrimo-grafana
     image: grafana/grafana
     volumes:
-      - ./docker/grafana/datasources:/etc/grafana/provisioning/datasources:ro
+      - ./docker/grafana:/etc/grafana/provisioning/datasources:ro
     environment:
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
