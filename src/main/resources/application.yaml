@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: "distributed-tracing"
+    name: "distrimo"
   datasource:
     url: jdbc:mysql://mysql-tdev1a-tdev1a.f.aivencloud.com:16694/tdev1adb?useSSL=true&requireSSL=true&allowPublicKeyRetrieval=true&serverTimezone=Asia/Jakarta
     username: avnadmin
