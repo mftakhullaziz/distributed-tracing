@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -17,12 +18,12 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
+@Builder
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @DynamicUpdate
 @DynamicInsert
-@Data
 @Table(name = "users_table")
 @Entity
 public class UserTRecord {
@@ -47,8 +48,8 @@ public class UserTRecord {
     @Column(name = "last_name", length = 50)
     private String lastName;
 
-    @Column(name = "status", nullable = false)
-    private boolean status = true;
+    @Column(name = "is_active")
+    private boolean isActive;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     @CreationTimestamp
