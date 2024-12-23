@@ -3,6 +3,7 @@ package com.example.distrimo.controller;
 import com.example.distrimo.core.UserService;
 import com.example.distrimo.data.UserData;
 import com.example.distrimo.data.UserRequest;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,6 +19,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("api/user")
+@Tag(name = "User Rest API")
 @RequiredArgsConstructor
 public class UserController {
 
