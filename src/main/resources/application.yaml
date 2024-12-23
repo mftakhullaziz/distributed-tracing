@@ -1,0 +1,27 @@
+server:
+  port: 8001
+
+spring:
+  application:
+    name: "distributed-tracing"
+  datasource:
+    url: jdbc:mysql://mysql-tdev1a-tdev1a.f.aivencloud.com:16694/tdev1adb?useSSL=true&requireSSL=true&allowPublicKeyRetrieval=true&serverTimezone=Asia/Jakarta
+    username: avnadmin
+    password: AVNS_Hp03CQFb7J-netqxxqQ
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 10
+      auto-commit: true
+      idle-timeout: 30000
+      max-lifetime: 1800000
+      connection-timeout: 30000
+  jpa:
+    show-sql: true # Enables SQL queries in logs
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true # Formats SQL for better readability
+        use_sql_comments: true # Adds comments to the SQL output
