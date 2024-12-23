@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>distributed-tracing</artifactId>
+	<artifactId>distrimo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>distributed-tracing</name>
+	<name>distrimo</name>
 	<description>Distributed trace with otel prometheus grafana</description>
 	<url/>
 	<licenses>

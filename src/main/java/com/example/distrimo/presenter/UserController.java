@@ -1,4 +1,4 @@
-package com.example.distributed_tracing.presenter;
+package com.example.distrimo.presenter;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

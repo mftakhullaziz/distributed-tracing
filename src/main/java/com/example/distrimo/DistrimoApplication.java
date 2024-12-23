@@ -1,13 +1,13 @@
-package com.example.distributed_tracing;
+package com.example.distrimo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DistributedTracingApplication {
+public class DistrimoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DistributedTracingApplication.class, args);
+		SpringApplication.run(DistrimoApplication.class, args);
 	}
 
 }

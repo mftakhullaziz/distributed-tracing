@@ -1,10 +1,10 @@
-package com.example.distributed_tracing;
+package com.example.distrimo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DistributedTracingApplicationTests {
+class DistrimoApplicationTests {
 
 	@Test
 	void contextLoads() {
