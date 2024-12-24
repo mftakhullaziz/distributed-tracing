@@ -1,6 +1,13 @@
 server:
   port: 8001
 
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+
 spring:
   profiles:
     active: "development"
@@ -34,6 +41,8 @@ logging:
   level:
     io.micrometer.tracing: DEBUG
     zipkin2: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 
 management:
   tracing:

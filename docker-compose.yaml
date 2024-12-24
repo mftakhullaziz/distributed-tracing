@@ -6,9 +6,17 @@ services:
       dockerfile: Dockerfile
     environment:
       LOKI_HOST: "loki"
+      LOKI_PORT: "3100"
       TEMPO_HOST: http://tempo:9411
+      OTEL_SERVICE_NAME: "distrimo-backend-service"
+      OTEL_TRACES_EXPORTER: "jaeger"
+      OTEL_EXPORTER_JAEGER_ENDPOINT: "http://jaeger:14250"
+      OTEL_METRICS_EXPORTER: "logging"
+      OTEL_LOGS_EXPORTER: "logging"
     ports:
       - "8001:8001"
+    depends_on:
+      - jaeger-all-in-one
 
   tempo:
     container_name: distrimo-tempo
@@ -56,3 +64,13 @@ services:
       - GF_AUTH_DISABLE_LOGIN_FORM=true
     ports:
       - "3000:3000"
+
+  jaeger-all-in-one:
+    container_name: jaeger
+    image: jaegertracing/all-in-one:latest
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+    restart: always
+    ports:
+      - "16686:16686"
+      - "14250:14250"

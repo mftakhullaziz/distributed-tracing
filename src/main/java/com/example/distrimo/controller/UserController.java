@@ -6,6 +6,7 @@ import com.example.distrimo.data.UserRequest;
 import io.micrometer.observation.annotation.Observed;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.UUID;
 
+@Log4j2
 @Observed
 @RestController
 @RequestMapping("api/user")
@@ -35,6 +37,7 @@ public class UserController {
 
     @GetMapping("/{email}")
     public ResponseEntity<UserData> getUserByEmail(@PathVariable String email) {
+        log.info("Call controller");
         UserData userData = userService.getUserByEmail(email);
         return ResponseEntity.ok(userData);
     }

@@ -7,11 +7,13 @@ import com.example.distrimo.infra.UserJPAGateway;
 import com.example.distrimo.infra.UserTRecord;
 import io.micrometer.observation.annotation.Observed;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
+@Log4j2
 @Observed
 @Core
 @RequiredArgsConstructor
@@ -34,6 +36,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserData getUserByEmail(String email) {
+        log.info("Getting user by email: {}", email);
         return userGateway.findUserByEmail(email)
             .map(this::buildUserData)
             .orElse(null);
